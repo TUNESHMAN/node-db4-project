@@ -4,11 +4,15 @@ const cors = require("cors");
 const helmet = require("helmet");
 const server = express();
 
+// Bring the router to the server to be accessed
+const recipeRouter = require("./recipe/recipeRouter");
+
 // Make use of the middleware
 server.use(express.json());
 server.use(cors());
 server.use(helmet());
 server.use(logger);
+server.use("/recipe", recipeRouter);
 
 // Create a dummy endpoint
 server.get("/", (req, res) => {
